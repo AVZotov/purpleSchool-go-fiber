@@ -7,6 +7,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/rs/zerolog/log"
 )
 
 const DevConfig = "dev.env"
@@ -21,7 +22,7 @@ func main() {
 	app.Use(recover.New())
 	err := app.Listen(":" + cfg.ServerPort)
 	if err != nil {
-		fmt.Println(err)
+		log.Error().Msg(err.Error())
 		return
 	}
 }
