@@ -17,8 +17,10 @@ func main() {
 	config.Init(Configs)
 	cfg := config.NewConfig()
 
-	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
-	logConfig := slogfiber.Config{
+	handlerOpts := &slog.HandlerOptions{Level: cfg.LogLevel}
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, handlerOpts))
+
+	slogFiberConfig := slogfiber.Config{
 		DefaultLevel:     cfg.LogLevel,
 		ClientErrorLevel: cfg.LogLevel,
 		ServerErrorLevel: cfg.LogLevel,
@@ -26,7 +28,7 @@ func main() {
 
 	app := fiber.New()
 
-	app.Use(slogfiber.NewWithConfig(logger, logConfig))
+	app.Use(slogfiber.NewWithConfig(logger, slogFiberConfig))
 	app.Use(recover.New())
 
 	pages.New(app)
