@@ -15,5 +15,6 @@ func New(router fiber.Router) {
 }
 
 func (h *Handler) home(c *fiber.Ctx) error {
+
 	return c.SendString("Home Page")
 }
