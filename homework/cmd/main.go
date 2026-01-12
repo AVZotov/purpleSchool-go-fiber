@@ -1,28 +1,41 @@
 package main
 
 import (
-	"fmt"
+	"log/slog"
 	"news/config"
 	"news/internal/pages"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	"github.com/rs/zerolog/log"
+	slogfiber "github.com/samber/slog-fiber"
 )
 
-const DevConfig = "dev.env"
+const Configs = "config.env"
 
 func main() {
-	fmt.Println("Hello World")
-	config.Init(DevConfig)
+	config.Init(Configs)
 	cfg := config.NewConfig()
 
+	handlerOpts := &slog.HandlerOptions{Level: cfg.LogLevel}
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, handlerOpts))
+
+	slogFiberConfig := slogfiber.Config{
+		DefaultLevel:     cfg.LogLevel,
+		ClientErrorLevel: cfg.LogLevel,
+		ServerErrorLevel: cfg.LogLevel,
+	}
+
 	app := fiber.New()
-	pages.New(app)
+
+	app.Use(slogfiber.NewWithConfig(logger, slogFiberConfig))
 	app.Use(recover.New())
+
+	pages.New(app)
+
 	err := app.Listen(":" + cfg.ServerPort)
 	if err != nil {
-		log.Error().Msg(err.Error())
+		logger.Error(err.Error())
 		return
 	}
 }
