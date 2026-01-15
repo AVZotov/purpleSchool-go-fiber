@@ -33,27 +33,28 @@ func GetEnv[T any](key string, defaultValue T) T {
 }
 
 func tryConvert[T any](value string) (T, bool) {
-	var zero T
+	var result T
 
-	switch any(zero).(type) {
-	case string:
-		return any(value).(T), true
-	case int:
+	switch v := any(&result).(type) {
+	case *string:
+		*v = value
+		return result, true
+	case *int:
 		if intVal, err := strconv.Atoi(value); err == nil {
-			return any(intVal).(T), true
+			*v = intVal
+			return result, true
 		}
-	case bool:
+	case *bool:
 		if boolVal, err := strconv.ParseBool(value); err == nil {
-			return any(boolVal).(T), true
+			*v = boolVal
+			return result, true
 		}
-	case time.Duration:
+	case *time.Duration:
 		if durVal, err := time.ParseDuration(value); err == nil {
-			return any(durVal).(T), true
+			*v = durVal
+			return result, true
 		}
-	}
-	if str, ok := any(value).(T); ok {
-		return str, false
 	}
 
-	return zero, false
+	return result, false
 }

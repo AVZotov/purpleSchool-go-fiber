@@ -11,13 +11,13 @@ import (
 
 func main() {
 	config.Init()
-	dbUrl := config.GetEnv("DATABASE_URL", "www.1.com")
-	fmt.Println(dbUrl)
 
 	app := fiber.New()
 	app.Use(recover.New())
 
 	home.NewHandler(app)
+
+	fmt.Println("Start")
 
 	app.Listen(":3000")
 }
