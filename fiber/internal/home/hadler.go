@@ -1,6 +1,11 @@
 package home
 
-import "github.com/gofiber/fiber/v2"
+import (
+	//"bytes"
+	//"html/template"
+
+	"github.com/gofiber/fiber/v2"
+)
 
 type Handler struct {
 	router fiber.Router
@@ -16,8 +21,14 @@ func NewHandler(router fiber.Router) {
 }
 
 func (h *Handler) home(c *fiber.Ctx) error {
-	return c.SendString("Home")
+	data := struct {
+		Count   int
+		IsAdmin bool
+	}{Count: 5, IsAdmin: true}
+
+	return c.Render("page", data)
 }
 func (h *Handler) error(c *fiber.Ctx) error {
+
 	return c.SendString("Error")
 }

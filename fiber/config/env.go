@@ -9,16 +9,20 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type DBConfig struct {
+	Url string
+}
+
+type LogConfig struct {
+	Level int
+}
+
 func Init() {
 	if err := godotenv.Load("pkg/.env"); err != nil {
 		log.Println("Error loading .env file")
 		return
 	}
 	log.Println(".env file loaded")
-}
-
-type DBConfig struct {
-	Url string
 }
 
 func GetEnv[T any](key string, defaultValue T) T {
