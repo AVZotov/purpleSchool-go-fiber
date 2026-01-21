@@ -12,6 +12,8 @@
 !/.gitignore
 
 !*.go
+!*.css
+!*.templ
 !go.sum
 !go.mod
 

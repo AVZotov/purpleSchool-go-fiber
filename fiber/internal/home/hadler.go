@@ -4,6 +4,9 @@ import (
 	//"bytes"
 	//"html/template"
 
+	"go-fiber/pkg/tadaptor"
+	"go-fiber/views"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -15,18 +18,12 @@ func NewHandler(router fiber.Router) {
 	h := &Handler{
 		router: router,
 	}
-	api := h.router.Group("/api")
-	api.Get("/", h.home)
-	api.Get("/error", h.error)
+	h.router.Get("/", h.home)
 }
 
 func (h *Handler) home(c *fiber.Ctx) error {
-	data := struct {
-		Count   int
-		IsAdmin bool
-	}{Count: 5, IsAdmin: true}
-
-	return c.Render("page", data)
+	component := views.Main()
+	return tadaptor.Render(c, component)
 }
 func (h *Handler) error(c *fiber.Ctx) error {
 
