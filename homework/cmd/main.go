@@ -8,7 +8,6 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	"github.com/gofiber/template/html/v2"
 	slogfiber "github.com/samber/slog-fiber"
 )
 
@@ -27,14 +26,11 @@ func main() {
 		ServerErrorLevel: cfg.LogLevel,
 	}
 
-	engine := html.New("./internal/views/html", ".gohtml")
-
-	app := fiber.New(fiber.Config{
-		Views: engine,
-	})
+	app := fiber.New()
 
 	app.Use(slogfiber.NewWithConfig(logger, slogFiberConfig))
 	app.Use(recover.New())
+	app.Static("/static", "./static")
 
 	pages.New(app)
 
