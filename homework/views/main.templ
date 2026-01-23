@@ -1,0 +1,43 @@
+package views
+
+import "news/views/layouts"
+import "news/views/components"
+
+templ Main() {
+	@layouts.Layout(layouts.LayoutProps{
+		Title:           "Homework",
+		MetaDescription: "TEMPL based site",
+	}) {
+		<header>
+			@layouts.Container() {
+				@layouts.Menu()
+			}
+			@layouts.Navigation([]components.NavItemProp{
+				{Name: "#Еда", Link: "/category/food", Image: "static/images/food.jpg"},
+				{Name: "#Животные", Link: "/category/animal", Image: "static/images/animal.jpg"},
+				{Name: "#Машины", Link: "/category/car", Image: "static/images/car.jpg"},
+				{Name: "#Спорт", Link: "/category/sport", Image: "static/images/sport.jpg"},
+				{Name: "#Музыка", Link: "/category/music", Image: "static/images/music.jpg"},
+				{Name: "#Технологии", Link: "/category/tech", Image: "static/images/tech.jpg"},
+				{Name: "#Прочее", Link: "/category/other", Image: "static/images/other.jpg"},
+			})
+		</header>
+		<main>
+			@layouts.Container() {
+				@layouts.Body()
+			}
+		</main>
+		<footer>
+			@layouts.Container() {
+				@layouts.Footer() {
+					<span>
+						@components.MenuItem("Правила обработки персональных данных", "/")
+					</span>
+					<span>
+						@components.MenuItem("Все права защищены 2025", "/")
+					</span>
+				}
+			}
+		</footer>
+	}
+}

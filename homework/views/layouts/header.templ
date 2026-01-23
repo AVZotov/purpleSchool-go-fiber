@@ -1,0 +1,20 @@
+package layouts
+
+templ HeaderCSS() {
+	<style>
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+    </style>
+}
+
+templ Header() {
+	@HeaderCSS()
+	<div class="header">
+		@Menu()
+	</div>
+}
