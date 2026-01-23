@@ -1,0 +1,25 @@
+package components
+
+templ MenuItemCSS() {
+	<style>
+        .item {
+            cursor: pointer;
+            font-weight: 500;
+            font-style: Medium;
+            font-size: 16px;
+            text-decoration: none;
+            color: var(--color-font-primary);
+
+        }
+        .item:active {
+            color: var(--color-font-secondary);
+            font-weight: 700;
+            font-style: Bold;
+        }
+    </style>
+}
+
+templ MenuItem(name string, href string) {
+	@MenuItemCSS()
+	<a class="item" href={ templ.SafeURL(href) }>{ name }</a>
+}
