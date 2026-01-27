@@ -70,18 +70,6 @@ func Main() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = layouts.Navigation([]components.NavItemProp{
-				{Name: "#Еда", Link: "/category/food", Image: "static/images/food.jpg"},
-				{Name: "#Животные", Link: "/category/animal", Image: "static/images/animal.jpg"},
-				{Name: "#Машины", Link: "/category/car", Image: "static/images/car.jpg"},
-				{Name: "#Спорт", Link: "/category/sport", Image: "static/images/sport.jpg"},
-				{Name: "#Музыка", Link: "/category/music", Image: "static/images/music.jpg"},
-				{Name: "#Технологии", Link: "/category/tech", Image: "static/images/tech.jpg"},
-				{Name: "#Прочее", Link: "/category/other", Image: "static/images/other.jpg"},
-			}).Render(ctx, templ_7745c5c3_Buffer)
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
 			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</header><main>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
@@ -98,6 +86,22 @@ func Main() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
+				templ_7745c5c3_Err = layouts.Navigation([]components.NavItemProp{
+					{Name: "#Еда", Link: "/category/food", Image: "static/images/food.jpg"},
+					{Name: "#Животные", Link: "/category/animal", Image: "static/images/animal.jpg"},
+					{Name: "#Машины", Link: "/category/car", Image: "static/images/car.jpg"},
+					{Name: "#Спорт", Link: "/category/sport", Image: "static/images/sport.jpg"},
+					{Name: "#Музыка", Link: "/category/music", Image: "static/images/music.jpg"},
+					{Name: "#Технологии", Link: "/category/tech", Image: "static/images/tech.jpg"},
+					{Name: "#Прочее", Link: "/category/other", Image: "static/images/other.jpg"},
+				}).Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, " ")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
 				templ_7745c5c3_Err = layouts.Body().Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
@@ -108,7 +112,7 @@ func Main() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</main><footer>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</main><footer>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -136,7 +140,7 @@ func Main() templ.Component {
 						}()
 					}
 					ctx = templ.InitializeContext(ctx)
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<span>")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<span>")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -144,7 +148,7 @@ func Main() templ.Component {
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</span> <span>")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</span> <span>")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -152,7 +156,7 @@ func Main() templ.Component {
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</span>")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</span>")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -168,7 +172,7 @@ func Main() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</footer>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</footer>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
