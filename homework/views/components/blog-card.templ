@@ -1,0 +1,121 @@
+package components
+
+type BlogCardProp struct {
+Author string
+AuthorImg string
+ArticleHeader string
+Article string
+Date string
+BlogImg string
+}
+
+templ BlogCardCSS() {
+<style>
+    .blogcard {
+        box-shadow: 0 0 32px rgba(0, 0, 0, 0.2);
+        width: 360px;
+        height: 389px;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    .blogcard-image {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .blogcard-header {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 100%;
+        color: #3E3232;
+        padding: 16px 0;
+    }
+
+    .blogcard-text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0;
+        color: #3E3232BF;
+    }
+
+    .blogcard-text-truncate-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .blogcard-author-profile {
+        display: flex;
+        align-items: center;
+        background-color: #F5F5F5;
+        border-radius: 12px;
+        padding: 10px 16px;
+        margin-top: auto;
+    }
+
+    .blogcard-author-image {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        flex-shrink: 0;
+    }
+
+    .blogcard-credentials {
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 1;
+    }
+
+    .blogcard-author-name {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 22px;
+        flex-shrink: 1;
+    }
+
+    .blogcard-blog-date {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        color: rgba(62, 50, 50, 0.75);
+    }
+
+    .blogcard-author-favorite {
+        flex-shrink: 0;
+        font-size: 20px;
+        margin-left: auto;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .blogcard-author-favorite:hover {
+        color: #309689;
+    }
+</style>
+}
+
+templ BlogCard(prop BlogCardProp) {
+@BlogCardCSS()
+<div class="blogcard">
+    <img class="blogcard-image" alt="article image" src={templ.SafeURL(prop.BlogImg)} />
+    <h2 class="blogcard-header">{prop.ArticleHeader}</h2>
+    <div class="blogcard-text blogcard-text-truncate-2">{prop.Article}</div>
+    <div class="blogcard-author-profile">
+        <img class="blogcard-author-image" alt="author image" src={templ.SafeURL(prop.AuthorImg)} />
+        <div class="blogcard-credentials">
+            <span class="blogcard-author-name">{prop.Author}</span>
+            <span class="blogcard-blog-date">{prop.Date}</span>
+        </div>
+        <a class="blogcard-author-favorite" href="#"><i class="fa-regular fa-bookmark"></i></a>
+    </div>
+</div>
+}

@@ -31,7 +31,7 @@ func NavigationCSS() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n        .nav-wrapper {\n            background: #F5F5F5;\n            border-radius: 12px;\n        }\n\n        .nav-container {\n            display: flex;\n            align-items: left;\n            padding: 0;\n            gap: 24px;\n            \n        }\n\n        .nav-scroll {\n            display: flex;\n            gap: 12px;\n            overflow-x: auto;\n            flex: 1;\n            padding: 5px 0;\n            scrollbar-width: none;\n            -ms-overflow-style: none;\n        }\n\n        .nav-scroll::-webkit-scrollbar {\n            display: none;\n        }\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n    .nav-wrapper {\n        background: #F5F5F5;\n        border-radius: 12px;\n    }\n\n    .nav-container {\n        display: flex;\n        align-items: left;\n        padding: 0;\n        gap: 24px;\n\n    }\n\n    .nav-scroll {\n        display: flex;\n        gap: 12px;\n        overflow-x: auto;\n        flex: 1;\n        padding: 5px 0;\n        scrollbar-width: none;\n        -ms-overflow-style: none;\n    }\n\n    .nav-scroll::-webkit-scrollbar {\n        display: none;\n    }\n</style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

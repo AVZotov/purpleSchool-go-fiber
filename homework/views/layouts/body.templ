@@ -1,16 +1,23 @@
 package layouts
 
-templ BodyCSS() {
-	<style>
-        .body {
-            font-size: 100px;
-        }
-    </style>
+import "news/views/components"
+
+css BodyClass() {
+display: grid;
+gap: 60px;
 }
 
-templ Body() {
-	@BodyCSS()
-	<p>
-		NO DATA IN THIS DESIGN
-	</p>
+templ Body(blogProps []components.BlogCardProp, topicProps []components.TopicCardProp) {
+<div class={BodyClass()}>
+	@CardsGrid() {
+	for _, prop := range topicProps {
+	@components.TopicCard(prop)
+	}
+	}
+	@CardsGrid() {
+	for _, prop := range blogProps {
+	@components.BlogCard(prop)
+	}
+	}
+</div>
 }

@@ -11,7 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 import "news/views/layouts"
 import "news/views/components"
 
-func Main() templ.Component {
+func Main(blogProps []components.BlogCardProp, topicProps []components.TopicCardProp) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -87,13 +87,13 @@ func Main() templ.Component {
 				}
 				ctx = templ.InitializeContext(ctx)
 				templ_7745c5c3_Err = layouts.Navigation([]components.NavItemProp{
-					{Name: "#Еда", Link: "/category/food", Image: "static/images/food.jpg"},
-					{Name: "#Животные", Link: "/category/animal", Image: "static/images/animal.jpg"},
-					{Name: "#Машины", Link: "/category/car", Image: "static/images/car.jpg"},
-					{Name: "#Спорт", Link: "/category/sport", Image: "static/images/sport.jpg"},
-					{Name: "#Музыка", Link: "/category/music", Image: "static/images/music.jpg"},
-					{Name: "#Технологии", Link: "/category/tech", Image: "static/images/tech.jpg"},
-					{Name: "#Прочее", Link: "/category/other", Image: "static/images/other.jpg"},
+					{Name: "#Еда", Link: "/category/food", Image: "static/images/tag/food.jpg"},
+					{Name: "#Животные", Link: "/category/animal", Image: "static/images/tag/animal.jpg"},
+					{Name: "#Машины", Link: "/category/car", Image: "static/images/tag/car.jpg"},
+					{Name: "#Спорт", Link: "/category/sport", Image: "static/images/tag/sport.jpg"},
+					{Name: "#Музыка", Link: "/category/music", Image: "static/images/tag/music.jpg"},
+					{Name: "#Технологии", Link: "/category/tech", Image: "static/images/tag/tech.jpg"},
+					{Name: "#Прочее", Link: "/category/other", Image: "static/images/tag/other.jpg"},
 				}).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
@@ -102,7 +102,7 @@ func Main() templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = layouts.Body().Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = layouts.Body(blogProps, topicProps).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
