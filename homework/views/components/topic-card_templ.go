@@ -8,7 +8,13 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func MenuItemCSS() templ.Component {
+type TopicCardProp struct {
+	Title string
+	Text  string
+	Img   string
+}
+
+func TopicCardCSS() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,7 +35,7 @@ func MenuItemCSS() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n        .item {\n            cursor: pointer;\n            font-weight: 500;\n            font-style: Medium;\n            font-size: 16px;\n            text-decoration: none;\n            color: var(--color-font-primary);\n\n        }\n        .item:active {\n            color: var(--color-font-secondary);\n            font-weight: 700;\n            font-style: Bold;\n        }\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n    .topic-card {\n        display: grid;\n        grid-template-areas: \"overlay\";\n        align-items: end;\n        width: 360px;\n        height: 452px;\n        border-radius: 12px;\n        overflow: hidden;\n    }\n\n    .topic-card>* {\n        grid-area: overlay;\n    }\n\n    .topic-card-img {\n        width: 100%;\n        height: 100%;\n        object-fit: cover;\n    }\n\n    .topic-card-content {\n        padding: 10px;\n        margin: 0 10px 10px 10px;\n        border-radius: 12px;\n        background: rgba(255, 255, 255, 0.75);\n    }\n\n    .topic-card-header {\n        font-weight: 400;\n        font-size: 25px;\n        line-height: 100%;\n    }\n\n    .topic-card-text {\n        font-weight: 400;\n        font-size: 14px;\n        line-height: 20px;\n        color: rgba(0, 0, 0, 0.75);\n    }\n</style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -37,7 +43,7 @@ func MenuItemCSS() templ.Component {
 	})
 }
 
-func MenuItem(name string, href string) templ.Component {
+func TopicCard(cardProp TopicCardProp) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -58,37 +64,50 @@ func MenuItem(name string, href string) templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = MenuItemCSS().Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = TopicCardCSS().Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<a class=\"item\" href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"topic-card\"><img class=\"topic-card-img\" alt=\"background image\" src=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var3 templ.SafeURL
-		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(href))
+		var templ_7745c5c3_Var3 string
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(templ.SafeURL(cardProp.Img))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/menu-sign.templ`, Line: 24, Col: 43}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/topic-card.templ`, Line: 56, Col: 87}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\"><div class=\"topic-card-content\"><h2 class=\"topic-card-header\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 string
-		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(name)
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(cardProp.Title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/menu-sign.templ`, Line: 24, Col: 52}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/topic-card.templ`, Line: 58, Col: 53}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</a>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</h2><p class=\"topic-card-text\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var5 string
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(cardProp.Text)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/topic-card.templ`, Line: 59, Col: 49}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</p></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -1,0 +1,18 @@
+package layouts
+
+templ CardsGridCSS() {
+	<style>
+    .cards-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(4, 1fr);
+    }
+</style>
+}
+
+templ CardsGrid() {
+	@CardsGridCSS()
+	<div class="cards-grid">
+		{ children... }
+	</div>
+}
