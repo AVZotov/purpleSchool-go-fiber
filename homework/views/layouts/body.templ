@@ -3,21 +3,21 @@ package layouts
 import "news/views/components"
 
 css BodyClass() {
-display: grid;
-gap: 60px;
+	display: grid;
+	gap: 60px;
 }
 
 templ Body(blogProps []components.BlogCardProp, topicProps []components.TopicCardProp) {
-<div class={BodyClass()}>
-	@CardsGrid() {
-	for _, prop := range topicProps {
-	@components.TopicCard(prop)
-	}
-	}
-	@CardsGrid() {
-	for _, prop := range blogProps {
-	@components.BlogCard(prop)
-	}
-	}
-</div>
+	<div class={ BodyClass() }>
+		@CardsGrid() {
+			for _, prop := range topicProps {
+				@components.TopicCard(prop)
+			}
+		}
+		@CardsGrid() {
+			for _, prop := range blogProps {
+				@components.BlogCard(prop)
+			}
+		}
+	</div>
 }

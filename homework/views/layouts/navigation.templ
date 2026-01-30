@@ -3,7 +3,7 @@ package layouts
 import "news/views/components"
 
 templ NavigationCSS() {
-<style>
+	<style>
     .nav-wrapper {
         background: #F5F5F5;
         border-radius: 12px;
@@ -34,17 +34,17 @@ templ NavigationCSS() {
 }
 
 templ Navigation(items []components.NavItemProp) {
-@NavigationCSS()
-<nav class="nav-wrapper">
-    @Container() {
-    <div class="nav-container">
-        <div class="nav-scroll">
-            for _, item := range items {
-            @components.NavigationItem(item)
-            }
-        </div>
-        @components.ScrollArrow()
-    </div>
-    }
-</nav>
+	@NavigationCSS()
+	<nav class="nav-wrapper">
+		@Container() {
+			<div class="nav-container">
+				<div class="nav-scroll">
+					for _, item := range items {
+						@components.NavigationItem(item)
+					}
+				</div>
+				@components.ScrollArrow()
+			</div>
+		}
+	</nav>
 }

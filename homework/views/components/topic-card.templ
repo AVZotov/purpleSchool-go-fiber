@@ -1,13 +1,13 @@
 package components
 
-type TopicCardProp struct{
-Title string
-Text string
-Img string
+type TopicCardProp struct {
+	Title string
+	Text  string
+	Img   string
 }
 
 templ TopicCardCSS() {
-<style>
+	<style>
     .topic-card {
         display: grid;
         grid-template-areas: "overlay";
@@ -51,12 +51,12 @@ templ TopicCardCSS() {
 }
 
 templ TopicCard(cardProp TopicCardProp) {
-@TopicCardCSS()
-<div class="topic-card">
-    <img class="topic-card-img" alt="background image" src={templ.SafeURL(cardProp.Img)} />
-    <div class="topic-card-content">
-        <h2 class="topic-card-header">{cardProp.Title}</h2>
-        <p class="topic-card-text">{cardProp.Text}</p>
-    </div>
-</div>
+	@TopicCardCSS()
+	<div class="topic-card">
+		<img class="topic-card-img" alt="background image" src={ templ.SafeURL(cardProp.Img) }/>
+		<div class="topic-card-content">
+			<h2 class="topic-card-header">{ cardProp.Title }</h2>
+			<p class="topic-card-text">{ cardProp.Text }</p>
+		</div>
+	</div>
 }

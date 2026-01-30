@@ -1,7 +1,7 @@
 package layouts
 
 templ CardsGridCSS() {
-<style>
+	<style>
     .cards-grid {
         display: grid;
         gap: 24px;
@@ -11,8 +11,8 @@ templ CardsGridCSS() {
 }
 
 templ CardsGrid() {
-@CardsGridCSS()
-<div class="cards-grid">
-    { children... }
-</div>
+	@CardsGridCSS()
+	<div class="cards-grid">
+		{ children... }
+	</div>
 }
