@@ -2,42 +2,26 @@ package views
 
 import "news/views/layouts"
 import "news/views/components"
+import "news/views/widgets"
 
-templ Main(blogProps []components.BlogCardProp, topicProps []components.TopicCardProp) {
-	@layouts.Layout(layouts.LayoutProps{
-		Title:           "Homework",
-		MetaDescription: "TEMPL based site",
-	}) {
-		<header>
-			@layouts.Container() {
-				@layouts.Menu()
-			}
-		</header>
-		<main>
-			@layouts.Container() {
-				@layouts.Navigation([]components.NavItemProp{
-					{Name: "#Еда", Link: "/category/food", Image: "static/images/tag/food.jpg"},
-					{Name: "#Животные", Link: "/category/animal", Image: "static/images/tag/animal.jpg"},
-					{Name: "#Машины", Link: "/category/car", Image: "static/images/tag/car.jpg"},
-					{Name: "#Спорт", Link: "/category/sport", Image: "static/images/tag/sport.jpg"},
-					{Name: "#Музыка", Link: "/category/music", Image: "static/images/tag/music.jpg"},
-					{Name: "#Технологии", Link: "/category/tech", Image: "static/images/tag/tech.jpg"},
-					{Name: "#Прочее", Link: "/category/other", Image: "static/images/tag/other.jpg"},
-				})
-				@layouts.Body(blogProps, topicProps)
-			}
-		</main>
-		<footer>
-			@layouts.Container() {
-				@layouts.Footer() {
-					<span>
-						@components.MenuItem("Правила обработки персональных данных", "/")
-					</span>
-					<span>
-						@components.MenuItem("Все права защищены 2025", "/")
-					</span>
+templ Main(blogProps []components.BlogCardProps, topicProps []components.TopicCardProps) {
+	@layouts.Layout(HomePageProps) {
+		@layouts.Container() {
+			<header>
+				@widgets.Header()
+			</header>
+			<main>
+				@layouts.Body() {
+					@widgets.Navigation(NavItemProps)
+					@widgets.MainTopics(topicProps)
+					@layouts.BodySectionWithHeader("Популярное", LinkIconOnlyLeftRight) {
+						@widgets.MainBlogs(blogProps)
+					}
 				}
-			}
-		</footer>
+			</main>
+			<footer>
+				@widgets.Footer()
+			</footer>
+		}
 	}
 }

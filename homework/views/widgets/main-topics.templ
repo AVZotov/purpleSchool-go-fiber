@@ -1,0 +1,13 @@
+package widgets
+
+import "news/views/components"
+
+templ MainTopics(topicProps []components.TopicCardProps) {
+	<div>
+		@CardsGrid() {
+			for _, prop := range topicProps {
+				@components.TopicCard(prop)
+			}
+		}
+	</div>
+}

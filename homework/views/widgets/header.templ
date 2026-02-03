@@ -1,0 +1,45 @@
+package widgets
+
+import "news/views/components"
+
+templ HeaderCSS() {
+	<style>
+    .header-container{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px 0;
+      align-items: center;
+      width: 100%;
+    }
+    .header-left {
+      display: flex;
+      flex-direction: row;
+      gap: 67px;
+      align-items: center;
+    }
+    
+    .header-right {
+      display: flex;
+      flex-direction: row;
+      gap: 25px;
+      align-items: center;
+    }
+  </style>
+}
+
+templ Header() {
+	@HeaderCSS()
+	<div class="header-container">
+		<div class="header-left">
+			@components.LinkSign("Новости", "#")
+			@components.LinkSign("Категории", "#")
+			@components.LinkSign("Контакты", "#")
+		</div>
+		<div class="header-right">
+			@components.Search()
+			@components.LinkSign("Вход", "#")
+			@components.LinkSign("Регистрация", "#")
+		</div>
+	</div>
+}

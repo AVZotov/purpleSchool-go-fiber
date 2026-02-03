@@ -1,0 +1,31 @@
+package layouts
+
+import "news/views/components"
+import "news/views/widgets"
+
+templ bodySectionWithHeaderCSS() {
+	<style>
+    .body-section-header-container {
+      display: grid;
+      gap: 40px;
+    }
+    .body-section-header-nav {
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+}
+
+templ BodySectionWithHeader(header string, buttonProps []components.ButtonProps) {
+	@bodySectionWithHeaderCSS()
+	<div class="body-section-header-container">
+		<div class="body-section-header-nav">
+			@components.ContentHeader(header)
+			@widgets.ButtonNav(buttonProps)
+		</div>
+		<div>
+			{ children... }
+		</div>
+	</div>
+}

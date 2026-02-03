@@ -1,11 +1,5 @@
 package components
 
-type NavItemProp struct {
-	Name  string
-	Link  string
-	Image string
-}
-
 templ NavigationItemCSS() {
 	<style>
     .nav-item {
@@ -43,12 +37,11 @@ templ NavigationItemCSS() {
         transition: background 0.3s;
         backdrop-filter: blur(5px);
     }
-    
+
     /* Текст поверх */
     .nav-item-text {
         z-index: 1;
         font-weight: 500;
-        font-style: Medium;
         font-size: 16px;
         line-height: 100%;
         letter-spacing: 0px;
@@ -66,7 +59,7 @@ templ NavigationItemCSS() {
     </style>
 }
 
-templ NavigationItem(item NavItemProp) {
+templ NavigationItem(item NavItemProps) {
 	@NavigationItemCSS()
 	<a
 		class="nav-item"

@@ -8,12 +8,6 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-type NavItemProp struct {
-	Name  string
-	Link  string
-	Image string
-}
-
 func NavigationItemCSS() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
@@ -35,7 +29,7 @@ func NavigationItemCSS() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n    .nav-item {\n        width: 170px;\n        height: 48px;\n        flex-shrink: 0;\n        padding: 12px 24px;\n        min-height: 48px;\n        border-radius: 12px;\n        color: white;\n        font-size: 14px;\n        text-decoration: none;\n        white-space: nowrap;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        position: relative;\n        overflow: hidden;\n        \n        /* Background image */\n        background-size: cover;\n        background-position: center;\n    }\n    \n    /* Overlay */\n    .nav-item::before {\n        content: '';\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background: rgba(0, 0, 0, 0.4);\n        border-radius: 12px;\n        transition: background 0.3s;\n        backdrop-filter: blur(5px);\n    }\n    \n    /* Текст поверх */\n    .nav-item-text {\n        z-index: 1;\n        font-weight: 500;\n        font-style: Medium;\n        font-size: 16px;\n        line-height: 100%;\n        letter-spacing: 0px;\n        text-align: center;\n    }\n    \n    /* Hover */\n    .nav-item:hover::before {\n        background: rgba(0, 0, 0, 0.6);\n    }\n    \n    .nav-item.active::before {\n        background: rgba(0, 0, 0, 0.7);\n    }\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n    .nav-item {\n        width: 170px;\n        height: 48px;\n        flex-shrink: 0;\n        padding: 12px 24px;\n        min-height: 48px;\n        border-radius: 12px;\n        color: white;\n        font-size: 14px;\n        text-decoration: none;\n        white-space: nowrap;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        position: relative;\n        overflow: hidden;\n        \n        /* Background image */\n        background-size: cover;\n        background-position: center;\n    }\n    \n    /* Overlay */\n    .nav-item::before {\n        content: '';\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background: rgba(0, 0, 0, 0.4);\n        border-radius: 12px;\n        transition: background 0.3s;\n        backdrop-filter: blur(5px);\n    }\n\n    /* Текст поверх */\n    .nav-item-text {\n        z-index: 1;\n        font-weight: 500;\n        font-size: 16px;\n        line-height: 100%;\n        letter-spacing: 0px;\n        text-align: center;\n    }\n    \n    /* Hover */\n    .nav-item:hover::before {\n        background: rgba(0, 0, 0, 0.6);\n    }\n    \n    .nav-item.active::before {\n        background: rgba(0, 0, 0, 0.7);\n    }\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -43,7 +37,7 @@ func NavigationItemCSS() templ.Component {
 	})
 }
 
-func NavigationItem(item NavItemProp) templ.Component {
+func NavigationItem(item NavItemProps) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -75,7 +69,7 @@ func NavigationItem(item NavItemProp) templ.Component {
 		var templ_7745c5c3_Var3 templ.SafeURL
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(item.Link))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/navigation-item.templ`, Line: 73, Col: 33}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/navigation-item.templ`, Line: 66, Col: 33}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -88,7 +82,7 @@ func NavigationItem(item NavItemProp) templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues("background-image: url(/" + item.Image + ")")
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/navigation-item.templ`, Line: 74, Col: 54}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/navigation-item.templ`, Line: 67, Col: 54}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
@@ -101,7 +95,7 @@ func NavigationItem(item NavItemProp) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(item.Name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/navigation-item.templ`, Line: 76, Col: 41}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/navigation-item.templ`, Line: 69, Col: 41}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {

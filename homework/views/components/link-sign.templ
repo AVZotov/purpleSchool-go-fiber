@@ -1,11 +1,10 @@
 package components
 
-templ MenuItemCSS() {
+templ LinkSignCSS() {
 	<style>
         .item {
             cursor: pointer;
             font-weight: 500;
-            font-style: Medium;
             font-size: 16px;
             text-decoration: none;
             color: var(--color-font-primary);
@@ -14,12 +13,11 @@ templ MenuItemCSS() {
         .item:active {
             color: var(--color-font-secondary);
             font-weight: 700;
-            font-style: Bold;
         }
     </style>
 }
 
-templ MenuItem(name string, href string) {
-	@MenuItemCSS()
+templ LinkSign(name string, href string) {
+	@LinkSignCSS()
 	<a class="item" href={ templ.SafeURL(href) }>{ name }</a>
 }

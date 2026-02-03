@@ -1,0 +1,30 @@
+package widgets
+
+import "news/views/components"
+
+templ FooterCSS() {
+	<style>
+    .footer-container {
+      background-color: rgba(62, 50, 50, 0.05);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 8px 0;
+      align-items: center;
+      height: 48px;
+    }
+  </style>
+}
+
+templ Footer() {
+	@FooterCSS()
+	<div class="footer-container">
+		<span>
+			@components.LinkSign("Правила обработки персональных данных", "#")
+		</span>
+		<span>
+			@components.LinkSign("Все права защищены 2025", "#")
+		</span>
+	</div>
+}

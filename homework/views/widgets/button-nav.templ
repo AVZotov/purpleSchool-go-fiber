@@ -1,0 +1,22 @@
+package widgets
+
+import "news/views/components"
+
+templ buttonNavCSS() {
+	<style>
+    .button-nav-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+}
+
+templ ButtonNav(props []components.ButtonProps) {
+	@buttonNavCSS()
+	<div class="button-nav-container">
+		for _, prop := range props {
+			@components.Button(prop)
+		}
+	</div>
+}

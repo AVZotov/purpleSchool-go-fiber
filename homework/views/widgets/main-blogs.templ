@@ -1,0 +1,13 @@
+package widgets
+
+import "news/views/components"
+
+templ MainBlogs(props []components.BlogCardProps) {
+	<div>
+		@CardsGrid() {
+			for _, prop := range props {
+				@components.BlogCard(prop)
+			}
+		}
+	</div>
+}

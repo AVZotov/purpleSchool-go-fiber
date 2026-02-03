@@ -1,14 +1,5 @@
 package components
 
-type BlogCardProp struct {
-	Author        string
-	AuthorImg     string
-	ArticleHeader string
-	Article       string
-	Date          string
-	BlogImg       string
-}
-
 templ BlogCardCSS() {
 	<style>
     .blogcard {
@@ -103,7 +94,7 @@ templ BlogCardCSS() {
 </style>
 }
 
-templ BlogCard(prop BlogCardProp) {
+templ BlogCard(prop BlogCardProps) {
 	@BlogCardCSS()
 	<div class="blogcard">
 		<img class="blogcard-image" alt="article image" src={ templ.SafeURL(prop.BlogImg) }/>

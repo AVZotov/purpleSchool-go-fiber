@@ -29,7 +29,7 @@ func SearchCSS() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n        .search-wrapper {\n            position: relative;\n        }\n        .search-input {\n            border-radius: 12px;\n            background: #F5F5F5;\n            padding: 14px 48px 14px 16px;\n            width: 359px;\n        }\n        .search-icon {\n            position: absolute;\n            right: 16px;\n            font-size: 24px;\n            top: 50%;\n            transform: translateY(-50%);\n        }\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n        .search-wrapper {\n            position: relative;\n        }\n        .search-input {\n            border-radius: 12px;\n            background: #F5F5F5;\n            padding: 14px 48px 14px 16px;\n            width: 359px;\n        }\n        .search-icon {\n            position: absolute;\n            right: 16px;\n            font-size: 20px;\n            top: 50%;\n            transform: translateY(-50%);\n        }\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -62,7 +62,7 @@ func Search() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"search-wrapper\"><input class=\"search-input\" type=\"text\" placeholder=\"Найти Новость\"> <span class=\"search-icon\">🔍</span></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"search-wrapper\"><input class=\"search-input\" type=\"text\" placeholder=\"Найти Новость\"> <span class=\"search-icon\"><i class=\"fa-solid fa-magnifying-glass\"></i></span></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

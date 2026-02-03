@@ -1,4 +1,4 @@
-package layouts
+package widgets
 
 import "news/views/components"
 
@@ -7,6 +7,7 @@ templ NavigationCSS() {
     .nav-wrapper {
         background: #F5F5F5;
         border-radius: 12px;
+        margin-top: 40px;
     }
 
     .nav-container {
@@ -14,7 +15,6 @@ templ NavigationCSS() {
         align-items: left;
         padding: 0;
         gap: 24px;
-
     }
 
     .nav-scroll {
@@ -33,18 +33,16 @@ templ NavigationCSS() {
 </style>
 }
 
-templ Navigation(items []components.NavItemProp) {
+templ Navigation(items []components.NavItemProps) {
 	@NavigationCSS()
 	<nav class="nav-wrapper">
-		@Container() {
-			<div class="nav-container">
-				<div class="nav-scroll">
-					for _, item := range items {
-						@components.NavigationItem(item)
-					}
-				</div>
-				@components.ScrollArrow()
+		<div class="nav-container">
+			<div class="nav-scroll">
+				for _, item := range items {
+					@components.NavigationItem(item)
+				}
 			</div>
-		}
+			@components.ScrollArrow()
+		</div>
 	</nav>
 }
