@@ -22,7 +22,7 @@ func New(router fiber.Router) {
 		router: router,
 	}
 	h.router.Get("/", h.home)
-	h.router.Get("/api/register", h.register)
+	h.router.Get("/register", h.register)
 	h.router.Post("/api/register", h.RegisterApi)
 }
 
