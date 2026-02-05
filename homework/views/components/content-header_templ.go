@@ -29,7 +29,7 @@ func contentHeaderCSS() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n    .content-header-wrapper {\n      display: flex;\n      flex-direction: row;\n      align-items: center;\n      gap: 6px;\n    }\n    .content-header-marker{\n      background-color: #F81539;\n      width: 4px;\n      height: 10px;\n      border-radius: var(--border-radius);\n    }\n    .content-header-sign{\n      font-weight: 500;\n      font-size: 20px;\n      line-height: 100%;\n      letter-spacing: 0px;\n      text-transform: capitalize;\n      color: var(--color-font-primary);\n    }\n  </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style>\n    .content-header-wrapper {\n      display: flex;\n      flex-direction: row;\n      align-items: center;\n      gap: 6px;\n    }\n    .content-header-marker{\n      background-color: #F81539;\n      width: 4px;\n      height: 10px;\n      border-radius: var(--border-radius);\n    }\n    .content-header-sign{\n      font-weight: 500;\n      font-size: 20px;\n      line-height: 100%;\n      letter-spacing: 0px;\n      color: var(--color-font-primary);\n    }\n  </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -69,7 +69,7 @@ func ContentHeader(header string) templ.Component {
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(header)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/content-header.templ`, Line: 32, Col: 42}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/content-header.templ`, Line: 31, Col: 42}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
