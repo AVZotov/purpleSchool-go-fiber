@@ -1,0 +1,39 @@
+package widgets
+
+import "news/views/components"
+
+templ registerFormCSS() {
+	<style>
+    .register-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .register-form-submit {
+        align-self: center;
+        margin-top: 50px;
+    }
+    </style>
+}
+
+templ RegisterForm(props []components.InputProps) {
+	@registerFormCSS()
+	<form
+		class="register-form"
+		hx-post="/api/register"
+		hx-target="this"
+		hx-swap="outerHTML"
+	>
+		for _, prop := range props {
+			<div>
+				@components.Input(prop)
+			</div>
+		}
+		<div class="register-form-submit">
+			@components.Button(components.ButtonProps{
+				Text:    "Зарегистрироваться",
+				Variant: components.ButtonPrimary,
+			})
+		</div>
+	</form>
+}

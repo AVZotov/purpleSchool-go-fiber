@@ -48,3 +48,20 @@ type ButtonProps struct {
 	Variant ButtonVariant
 	Link    string
 }
+
+type InputType string
+
+const (
+	InputText     InputType = "text"
+	InputEmail    InputType = "email"
+	InputPassword InputType = "password"
+)
+
+type InputProps struct {
+	Label       string
+	Name        string
+	Type        InputType
+	Placeholder string
+	Required    bool
+	Error       string
+}

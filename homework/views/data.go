@@ -21,3 +21,11 @@ var LinkIconOnlyLeftRight = []components.ButtonProps{
 	{Arrow: components.ArrowLeft, Variant: components.ButtonIconOnly, Link: "#"},
 	{Arrow: components.ArrowRight, Variant: components.ButtonIconOnly, Link: "#"},
 }
+
+func GetRegistrationInputForms(errors map[string]string) []components.InputProps {
+	return []components.InputProps{
+		{Label: "Имя", Name: "name", Type: components.InputText, Placeholder: "Введите ваше имя", Required: true, Error: errors["name"]},
+		{Label: "Email", Name: "email", Type: components.InputEmail, Placeholder: "example@mail.com", Required: true, Error: errors["email"]},
+		{Label: "Пароль", Name: "password", Type: components.InputPassword, Placeholder: "Минимум 5 символов", Required: true, Error: errors["password"]},
+	}
+}
