@@ -9,15 +9,15 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type Config struct {
+	ServerPort string     `env:"SERVER_PORT" envDefault:"8080"`
+	LogLevel   slog.Level `env:"LOG_LEVEL"`
+}
+
 func Init(file string) {
 	if err := godotenv.Load("config/" + file); err != nil {
 		log.Println("Error loading .env file")
 	}
-}
-
-type Config struct {
-	ServerPort string     `env:"SERVER_PORT" envDefault:"8080"`
-	LogLevel   slog.Level `env:"LOG_LEVEL"`
 }
 
 func NewConfig() *Config {

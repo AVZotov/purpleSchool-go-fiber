@@ -67,7 +67,7 @@ templ Button(props ButtonProps) {
 			}
 		</a>
 	} else {
-		<button class={ "btn", "btn-" + string(props.Variant) }>
+		<button type="submit" class={ "btn", "btn-" + string(props.Variant) }>
 			if props.Arrow == ArrowLeft {
 				<i class="fa-solid fa-chevron-left"></i>
 			}
