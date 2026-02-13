@@ -1,9 +1,12 @@
 package main
 
 import (
+	"context"
 	"log/slog"
 	"news/config"
 	"news/internal/pages"
+	"news/internal/repository"
+	"news/pkg/database"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
@@ -17,14 +20,25 @@ func main() {
 	config.Init(Configs)
 	cfg := config.NewConfig()
 
-	handlerOpts := &slog.HandlerOptions{Level: cfg.LogLevel}
+	handlerOpts := &slog.HandlerOptions{Level: cfg.Level}
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, handlerOpts))
 
 	slogFiberConfig := slogfiber.Config{
-		DefaultLevel:     cfg.LogLevel,
-		ClientErrorLevel: cfg.LogLevel,
-		ServerErrorLevel: cfg.LogLevel,
+		DefaultLevel:     cfg.Level,
+		ClientErrorLevel: cfg.Level,
+		ServerErrorLevel: cfg.Level,
 	}
+
+	// Подключение к БД
+	db, err := database.Connect(context.Background(), cfg.GetURL(), logger)
+	if err != nil {
+		logger.Error("Unable to connect to database", "error", err)
+		os.Exit(1)
+	}
+	defer db.Close()
+
+	// Создаём репозиторий
+	userRepo := repository.NewUserRepository(db)
 
 	app := fiber.New()
 
@@ -32,11 +46,12 @@ func main() {
 	app.Use(recover.New())
 	app.Static("/static", "./static")
 
-	pages.New(app)
+	// Передаём репозиторий и логгер в pages
+	pages.New(app, userRepo, logger)
 
-	err := app.Listen(":" + cfg.ServerPort)
-	if err != nil {
-		logger.Error(err.Error())
-		return
+	logger.Info("Starting server", "port", cfg.ServerConfig.Port)
+	if err := app.Listen(":" + cfg.ServerConfig.Port); err != nil {
+		logger.Error("Failed to start server", "error", err)
+		os.Exit(1)
 	}
 }

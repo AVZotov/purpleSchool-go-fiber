@@ -16,6 +16,7 @@
 !*.templ
 !go.sum
 !go.mod
+!/homework/migrations/*.sql
 
 !README.md
 !LICENSE
