@@ -5,6 +5,7 @@ import (
 	"log/slog"
 	"news/config"
 	"news/internal/pages"
+	"news/internal/repository"
 	"news/pkg/database"
 	"os"
 
@@ -36,13 +37,17 @@ func main() {
 	}
 	defer db.Close()
 
+	// Создаём репозиторий
+	userRepo := repository.NewUserRepository(db)
+
 	app := fiber.New()
 
 	app.Use(slogfiber.NewWithConfig(logger, slogFiberConfig))
 	app.Use(recover.New())
 	app.Static("/static", "./static")
 
-	pages.New(app)
+	// Передаём репозиторий и логгер в pages
+	pages.New(app, userRepo, logger)
 
 	logger.Info("Starting server", "port", cfg.ServerConfig.Port)
 	if err := app.Listen(":" + cfg.ServerConfig.Port); err != nil {
