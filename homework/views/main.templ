@@ -4,11 +4,11 @@ import "news/views/layouts"
 import "news/views/components"
 import "news/views/widgets"
 
-templ Main(blogProps []components.BlogCardProps, topicProps []components.TopicCardProps) {
+templ Main(blogProps []components.BlogCardProps, topicProps []components.TopicCardProps, username string) {
 	@layouts.Layout(HomePageProps) {
 		@layouts.Container() {
 			<header>
-				@widgets.Header()
+				@widgets.Header(username)
 			</header>
 			<main>
 				@layouts.Body() {

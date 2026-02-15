@@ -4,7 +4,7 @@ import "news/views/layouts"
 import "news/views/widgets"
 import "news/views/components"
 
-css registerContainerCSS() {
+css loginContainerCSS() {
 	max-width: 480px;
 	margin: 60px auto;
 	padding: 40px;
@@ -13,31 +13,23 @@ css registerContainerCSS() {
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
-templ ComponentNameCSS() {
-	<style>
-		. {
-
-		}
-	</style>
-}
-
-css contentHeaderContainerCSS() {
+css loginHeaderContainerCSS() {
 	justify-self: center;
 	margin-bottom: 40px;
 }
 
-templ Register() {
+templ Login() {
 	@layouts.Layout(HomePageProps) {
 		@layouts.Container() {
 			<header>
 				@widgets.Header("")
 			</header>
 			<main>
-				<div class={ registerContainerCSS() }>
-					<div class={ contentHeaderContainerCSS() }>
-						@components.ContentHeader("Регистрация на сайте")
+				<div class={ loginContainerCSS() }>
+					<div class={ loginHeaderContainerCSS() }>
+						@components.ContentHeader("Вход на сайт")
 					</div>
-					@widgets.RegisterForm(GetRegistrationInputForms(nil))
+					@widgets.LoginForm(GetLoginInputForms(nil), "")
 				</div>
 			</main>
 			<footer>

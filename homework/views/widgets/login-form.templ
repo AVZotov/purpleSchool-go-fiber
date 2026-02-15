@@ -1,0 +1,54 @@
+package widgets
+
+import "news/views/components"
+
+css loginFormCSS() {
+	max-width: 480px;
+	margin: 60px auto;
+	padding: 40px;
+	background: white;
+	border-radius: var(--border-radius);
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+css loginFormSubmit() {
+	align-self: center;
+	margin-top: 50px;
+}
+
+css loginError() {
+	color: #d32f2f;
+	text-align: center;
+	padding: 12px;
+	margin-bottom: 20px;
+	background: #ffebee;
+	border-radius: 8px;
+	border: 1px solid #ef5350;
+}
+
+templ LoginForm(props []components.InputProps, generalError string) {
+	<form
+		class={ loginFormCSS() }
+		hx-post="/api/login"
+		hx-target="this"
+		hx-swap="outerHTML"
+	>
+		if generalError != "" {
+			<div class={ loginError() } id="login-error">
+				<i class="fa-solid fa-circle-exclamation"></i>
+				{ generalError }
+			</div>
+		}
+		for _, prop := range props {
+			<div>
+				@components.Input(prop)
+			</div>
+		}
+		<div class={ loginFormSubmit() }>
+			@components.Button(components.ButtonProps{
+				Text:    "Войти",
+				Variant: components.ButtonPrimary,
+			})
+		</div>
+	</form>
+}

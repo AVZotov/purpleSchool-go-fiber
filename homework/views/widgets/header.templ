@@ -28,18 +28,32 @@ templ HeaderCSS() {
   </style>
 }
 
-templ Header() {
+templ Header(username string) {
 	@HeaderCSS()
 	<div class="header-container">
 		<div class="header-left">
-			@components.LinkSign("Новости", "#")
+			@components.LinkSign("Новости", "/")
 			@components.LinkSign("Категории", "#")
 			@components.LinkSign("Контакты", "#")
 		</div>
 		<div class="header-right">
-			@components.Search()
-			@components.LinkSign("Вход", "#")
-			@components.LinkSign("Регистрация", "/register")
+			if username == "" {
+				@components.Search()
+				@components.LinkSign("Вход", "/login")
+				@components.LinkSign("Регистрация", "/register")
+			} else {
+				@components.Search()
+				@components.LinkSign(username, "#")
+				<a
+					href="#"
+					class="item"
+					hx-post="/api/logout"
+					hx-target="body"
+					hx-swap="outerHTML"
+				>
+					Выход
+				</a>
+			}
 		</div>
 	</div>
 }
