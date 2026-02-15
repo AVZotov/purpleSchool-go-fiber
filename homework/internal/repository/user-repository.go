@@ -44,3 +44,33 @@ func (r *UserRepository) Create(ctx context.Context, username, email, password s
 
 	return user, nil
 }
+
+func (r *UserRepository) GetUser(ctx context.Context, email, password string) (*models.User, error) {
+	user := &models.User{}
+
+	query := `
+		SELECT id, username, email, password, created_at, updated_at
+		FROM users
+		WHERE email = $1
+	`
+
+	var hashedPassword string
+	if err := r.db.QueryRow(ctx, query, email).
+		Scan(
+			&user.ID,
+			&user.Username,
+			&user.Email,
+			&hashedPassword,
+			&user.CreatedAt,
+			&user.UpdatedAt,
+		); err != nil {
+		return nil, err
+	}
+
+	if err := bcrypt.CompareHashAndPassword(
+		[]byte(hashedPassword), []byte(password)); err != nil {
+		return nil, err
+	}
+
+	return user, nil
+}

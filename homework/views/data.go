@@ -29,3 +29,24 @@ func GetRegistrationInputForms(errors map[string]string) []components.InputProps
 		{Label: "Пароль", Name: "password", Type: components.InputPassword, Placeholder: "Минимум 5 символов", Required: true, Error: errors["password"]},
 	}
 }
+
+func GetLoginInputForms(errors map[string]string) []components.InputProps {
+	return []components.InputProps{
+		{
+			Label:       "Email",
+			Name:        "email",
+			Type:        components.InputEmail,
+			Placeholder: "example@mail.com",
+			Required:    true,
+			Error:       errors["email"],
+		},
+		{
+			Label:       "Пароль",
+			Name:        "password",
+			Type:        components.InputPassword,
+			Placeholder: "Введите пароль",
+			Required:    true,
+			Error:       errors["password"],
+		},
+	}
+}
